@@ -12,7 +12,7 @@ if (!fs.existsSync(directory)) {
 
 const server = http.createServer((req, res) => {
 
-    // POST - Create file
+ 
     if (req.method === 'POST' && req.url.startsWith('/files/')) {
 
         const fileName = req.url.split('/files/')[1];
@@ -40,7 +40,6 @@ const server = http.createServer((req, res) => {
         });
     }
 
-    // GET - Read file
     else if (req.method === 'GET' && req.url.startsWith('/files/')) {
 
         const fileName = req.url.split('/files/')[1];
@@ -59,7 +58,7 @@ const server = http.createServer((req, res) => {
         });
     }
 
-    // DELETE - Delete file
+   
     else if (req.method === 'DELETE' && req.url.startsWith('/files/')) {
 
         const fileName = req.url.split('/files/')[1];
@@ -78,10 +77,8 @@ const server = http.createServer((req, res) => {
         });
     }
 
-    // PUT - Update file
-    else if (req.method === 'PUT' && req.url.startsWith('/files/')) {
-
-        const fileName = req.url.split('/files/')[1];
+else if (req.method === 'PUT' && req.url.startsWith('/files/')) {
+    const fileName = req.url.split('/files/')[1];
         const filePath = path.join(directory, fileName);
 
         let data = "";
@@ -105,14 +102,11 @@ const server = http.createServer((req, res) => {
             });
         });
     }
-
-    // Invalid request
     else {
         res.writeHead(404);
         res.end('Route not found');
     }
 });
-
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
